@@ -1,5 +1,6 @@
 package supermarket.model
 
+import supermarket.model.offer.FiveForAmount
 import supermarket.model.offer.Offer
 import supermarket.model.offer.SpecialOfferType
 import supermarket.model.offer.ThreeForTwo
@@ -12,6 +13,8 @@ class Teller(private val catalog: SupermarketCatalog) {
     fun addSpecialOffer(offerType: SpecialOfferType, product: Product, argument: Double) {
         if (offerType == SpecialOfferType.ThreeForTwo) {
             this.offers[product] = ThreeForTwo(product, argument)
+        } else if (offerType == SpecialOfferType.FiveForAmount) {
+            this.offers[product] = FiveForAmount(product, argument)
         } else {
             this.offers[product] = Offer(offerType, product, argument)
         }
