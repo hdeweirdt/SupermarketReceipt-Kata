@@ -5,38 +5,43 @@ import supermarket.model.Product
 import supermarket.model.ProductQuantity
 import supermarket.model.SupermarketCatalog
 
-open class Offer(
-    internal var offerType: SpecialOfferType,
+abstract class Offer(
     internal val product: Product,
     internal var argument: Double
 ) {
-    open fun calculateDiscount(productQuantity: ProductQuantity, catalog: SupermarketCatalog): Discount? {
+    abstract fun calculateDiscount(productQuantity: ProductQuantity, catalog: SupermarketCatalog): Discount?
+}
+
+class TwoForAmount(product: Product, argument: Double) : Offer(product, argument) {
+    override fun calculateDiscount(productQuantity: ProductQuantity, catalog: SupermarketCatalog): Discount? {
+        val quantityAsInt = productQuantity.quantity.toInt()
+        return if (quantityAsInt >= 2) {
+            val unitPrice = catalog.getUnitPrice(productQuantity.product)
+            val productQuantityPerOfferApplication = 2
+            val total =
+                argument * (quantityAsInt / productQuantityPerOfferApplication) + quantityAsInt % 2 * unitPrice
+            val discountN = unitPrice * productQuantity.quantity - total
+            Discount(productQuantity.product, "2 for $argument", discountN)
+        } else {
+            null
+        }
+    }
+}
+
+class TenPercent(product: Product, argument: Double) : Offer(product, argument) {
+    override fun calculateDiscount(productQuantity: ProductQuantity, catalog: SupermarketCatalog): Discount? {
         val quantity = productQuantity.quantity
         val unitPrice = catalog.getUnitPrice(productQuantity.product)
-        val quantityAsInt = quantity.toInt()
-        var productQuantityPerOfferApplication = 1
-        if (offerType === SpecialOfferType.TwoForAmount) {
-            productQuantityPerOfferApplication = 2
-            if (quantityAsInt >= 2) {
-                val total =
-                    argument * (quantityAsInt / productQuantityPerOfferApplication) + quantityAsInt % 2 * unitPrice
-                val discountN = unitPrice * quantity - total
-                return Discount(productQuantity.product, "2 for $argument", discountN)
-            }
-        }
-        if (offerType === SpecialOfferType.TenPercentDiscount) {
-            return Discount(
-                productQuantity.product,
-                "$argument% off",
-                quantity * unitPrice * argument / 100.0
-            )
-        }
-        return null
+        return Discount(
+            productQuantity.product,
+            "$argument% off",
+            quantity * unitPrice * argument / 100.0
+        )
     }
 
 }
 
-class FiveForAmount(product: Product, argument: Double) : Offer(SpecialOfferType.FiveForAmount, product, argument) {
+class FiveForAmount(product: Product, argument: Double) : Offer(product, argument) {
 
     override fun calculateDiscount(productQuantity: ProductQuantity, catalog: SupermarketCatalog): Discount? {
         return if (productQuantity.quantity >= 5) {
@@ -57,7 +62,7 @@ class FiveForAmount(product: Product, argument: Double) : Offer(SpecialOfferType
     }
 }
 
-class ThreeForTwo(product: Product, argument: Double) : Offer(SpecialOfferType.ThreeForTwo, product, argument) {
+class ThreeForTwo(product: Product, argument: Double) : Offer(product, argument) {
     override fun calculateDiscount(productQuantity: ProductQuantity, catalog: SupermarketCatalog): Discount? {
         val quantityAsInt = productQuantity.quantity.toInt()
         return if (quantityAsInt >= 3) {
