@@ -3,6 +3,7 @@ package dojo.supermarket.model
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import supermarket.model.*
+import supermarket.model.offer.SpecialOfferType
 
 class TellerOfferTests {
 

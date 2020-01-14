@@ -1,5 +1,7 @@
 package supermarket.model
 
+import supermarket.model.offer.Offer
+import supermarket.model.offer.SpecialOfferType
 import java.util.HashMap
 
 
