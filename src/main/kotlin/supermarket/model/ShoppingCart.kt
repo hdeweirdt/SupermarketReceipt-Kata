@@ -23,7 +23,9 @@ class ShoppingCart {
             if (offers.containsKey(productQuantity.product)) {
                 val offer = offers[productQuantity.product]!!
                 val discount = offer.calculateDiscount(productQuantity, catalog)
-                receipt.addDiscount(discount)
+                if (discount != null) {
+                    receipt.addDiscount(discount)
+                }
             }
         }
     }
