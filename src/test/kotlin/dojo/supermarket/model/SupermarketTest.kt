@@ -13,7 +13,7 @@ class SupermarketTest {
         val catalog = getFilledCatalog()
 
         val cart = ShoppingCart()
-        cart.addItemQuantity(apples, 2.0)
+        cart.addToCart(apples, 2.0)
 
         val teller = Teller(catalog)
         val receipt = teller.checksOutArticlesFrom(cart)

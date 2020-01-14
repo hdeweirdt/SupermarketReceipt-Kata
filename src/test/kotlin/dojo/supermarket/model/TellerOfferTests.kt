@@ -22,7 +22,7 @@ class TellerOfferTests {
         val offerPrice = 20.0
 
         val cart = ShoppingCart()
-        cart.addItemQuantity(apples, 5.0)
+        cart.addToCart(apples, 5.0)
 
         val teller = Teller(catalog)
         teller.addSpecialOffer(SpecialOfferType.FiveForAmount, apples, offerPrice)
@@ -39,7 +39,7 @@ class TellerOfferTests {
         val offerPrice = 20.0
 
         val cart = ShoppingCart()
-        cart.addItemQuantity(apples, 6.0)
+        cart.addToCart(apples, 6.0)
 
         val teller = Teller(catalog)
         teller.addSpecialOffer(SpecialOfferType.FiveForAmount, apples, offerPrice)
@@ -54,7 +54,7 @@ class TellerOfferTests {
         val catalog = getFilledCatalog()
 
         val cart = ShoppingCart()
-        cart.addItemQuantity(apples, 3.0)
+        cart.addToCart(apples, 3.0)
 
         val teller = Teller(catalog)
         teller.addSpecialOffer(SpecialOfferType.FiveForAmount, apples, 5.0)
@@ -69,7 +69,7 @@ class TellerOfferTests {
         val catalog = getFilledCatalog()
 
         val cart = ShoppingCart()
-        cart.addItemQuantity(apples, 4.0)
+        cart.addToCart(apples, 4.0)
 
         val teller = Teller(catalog)
         teller.addSpecialOffer(SpecialOfferType.TenPercentDiscount, apples, 10.0)
@@ -85,7 +85,7 @@ class TellerOfferTests {
         val offerPrice = 20.0
 
         val cart = ShoppingCart()
-        cart.addItemQuantity(apples, 2.0)
+        cart.addToCart(apples, 2.0)
 
         val teller = Teller(catalog)
         teller.addSpecialOffer(SpecialOfferType.TwoForAmount, apples, offerPrice)
@@ -101,7 +101,7 @@ class TellerOfferTests {
         val offerPrice = 20.0
 
         val cart = ShoppingCart()
-        cart.addItemQuantity(apples, 3.0)
+        cart.addToCart(apples, 3.0)
 
         val teller = Teller(catalog)
         teller.addSpecialOffer(SpecialOfferType.TwoForAmount, apples, offerPrice)
@@ -116,7 +116,7 @@ class TellerOfferTests {
         val catalog = getFilledCatalog()
 
         val cart = ShoppingCart()
-        cart.addItemQuantity(apples, 1.0)
+        cart.addToCart(apples, 1.0)
 
         val teller = Teller(catalog)
         teller.addSpecialOffer(SpecialOfferType.TwoForAmount, apples, 5.0)
@@ -131,7 +131,7 @@ class TellerOfferTests {
         val catalog = getFilledCatalog()
 
         val cart = ShoppingCart()
-        cart.addItemQuantity(apples, 3.0)
+        cart.addToCart(apples, 3.0)
 
         val teller = Teller(catalog)
         teller.addSpecialOffer(SpecialOfferType.ThreeForTwo, apples, 5.0)
@@ -146,7 +146,7 @@ class TellerOfferTests {
         val catalog = getFilledCatalog()
 
         val cart = ShoppingCart()
-        cart.addItemQuantity(apples, 6.0)
+        cart.addToCart(apples, 6.0)
 
         val teller = Teller(catalog)
         teller.addSpecialOffer(SpecialOfferType.ThreeForTwo, apples, 5.0)
@@ -161,7 +161,7 @@ class TellerOfferTests {
         val catalog = getFilledCatalog()
 
         val cart = ShoppingCart()
-        cart.addItemQuantity(apples, 4.0)
+        cart.addToCart(apples, 4.0)
 
         val teller = Teller(catalog)
         teller.addSpecialOffer(SpecialOfferType.ThreeForTwo, apples, 5.0)
